@@ -21,8 +21,8 @@ def inoreader_summarizer(req: https_fn.Request) -> https_fn.Response:
 
     data = req.get_json()
     article_url = data.get('items')[0].get('canonical')[0].get('href')
-    response = get_article_text(article_url)
-    summary = summarize_text(response)
+    article_text = get_article_text(article_url)
+    summary = summarize_text(article_text)
 
     content = data.get('items')[0].get('summary').get('content')
     imgs = extract_img_urls(content)
